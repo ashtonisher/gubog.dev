@@ -3,10 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GUBOG.DEV — Frontend Developer</title>
+<title>gubog.dev — Frontend Developer</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500&display=swap">
 <style>
+  /* FOUT 방지: Space Grotesk 메트릭에 맞춘 폴백 폰트 정의 */
+  @font-face {
+    font-family: 'Space Grotesk Fallback';
+    src: local('Arial');
+    size-adjust: 100%;
+    ascent-override: 88%;
+    descent-override: 22%;
+    line-gap-override: 0%;
+  }
+
   :root {
     --accent: #FF6B2B;
     --bg: #0E0E0E;
@@ -35,11 +47,13 @@
   }
 
   body {
-    font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', 'Noto Sans KR', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
     transition: background 0.3s, color 0.3s;
+    margin: 0;
+    padding: 0;
   }
 
   /* NAV */
@@ -214,7 +228,7 @@
     50% { opacity: 0; }
   }
   .hero-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     font-size: clamp(1rem, 3vw, 2rem);
     font-weight: 400;
     color: var(--text2);
@@ -260,7 +274,7 @@
   .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
   .stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center; }
   .stat-num {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--accent);
@@ -319,7 +333,7 @@
   }
 
   .exp-period { font-size: 0.75rem; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 0.3rem; }
-  .exp-company { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .exp-company { font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
   .exp-role { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.75rem; }
   .exp-desc { font-size: 0.875rem; line-height: 1.75; color: var(--text2); }
 
@@ -338,8 +352,9 @@
   }
   .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
   .project-card-tag { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
-  .project-card-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .project-card-title { font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
   .project-card-desc { font-size: 0.8rem; line-height: 1.7; color: var(--text2); }
+  .highlight { color: var(--text); font-weight: 500; }
 
   /* ACHIEVEMENT LIST */
   .achievement-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
@@ -370,7 +385,7 @@
   }
   .github-card:hover { border-color: var(--accent); transform: translateY(-2px); }
   .github-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
-  .github-card-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); }
+  .github-card-title { font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); }
   .github-card-url { font-size: 0.78rem; color: var(--accent); }
   .github-card-desc { font-size: 0.8rem; color: var(--text2); line-height: 1.6; }
 
@@ -438,6 +453,13 @@
     .project-grid { columns: 2; }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   /* SVG icon sizes */
   .svg-icon-sm { width: 16px; height: 16px; }
   .svg-icon-os { width: 20px; height: 20px; fill: var(--text2); }
@@ -471,37 +493,37 @@
     <span class="nav-logo">gubog.dev</span>
     <div class="nav-right">
       <div class="nav-links">
-        <a onclick="goTo('about')">소개</a>
-        <a onclick="goTo('experience')">경력</a>
-        <a onclick="goTo('projects')">프로젝트</a>
-        <a onclick="goTo('personal')">개인 프로젝트</a>
+        <a href="#about" onclick="event.preventDefault(); goTo('about')">소개</a>
+        <a href="#experience" onclick="event.preventDefault(); goTo('experience')">경력</a>
+        <a href="#projects" onclick="event.preventDefault(); goTo('projects')">프로젝트</a>
+        <a href="#personal" onclick="event.preventDefault(); goTo('personal')">개인 프로젝트</a>
       </div>
-  <button class="theme-toggle" id="themeBtn" title="테마 전환">
+  <button class="theme-toggle" id="themeBtn" aria-label="테마 전환" aria-pressed="false">
     <!-- 달 outline (기본) -->
-    <svg id="iconMoon" class="icon-outline svg-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg aria-hidden="true" id="iconMoon" class="icon-outline svg-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     <!-- 달 filled (hover) -->
-    <svg id="iconMoonFilled" class="icon-filled hidden-icon svg-icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg aria-hidden="true" id="iconMoonFilled" class="icon-filled hidden-icon svg-icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     <!-- 해 outline (기본) -->
-    <svg id="iconSun" class="icon-outline hidden-icon svg-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg aria-hidden="true" id="iconSun" class="icon-outline hidden-icon svg-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     <!-- 해 filled (hover) -->
-    <svg id="iconSunFilled" class="icon-filled hidden-icon svg-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5" fill="currentColor"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg aria-hidden="true" id="iconSunFilled" class="icon-filled hidden-icon svg-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5" fill="currentColor"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
   </button>
-      <button class="hamburger" id="hamburger" aria-label="메뉴">
+      <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a onclick="goTo('about')">소개</a>
-    <a onclick="goTo('experience')">경력</a>
-    <a onclick="goTo('projects')">프로젝트</a>
-    <a onclick="goTo('personal')">개인 프로젝트</a>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#about" onclick="event.preventDefault(); goTo('about')">소개</a>
+    <a href="#experience" onclick="event.preventDefault(); goTo('experience')">경력</a>
+    <a href="#projects" onclick="event.preventDefault(); goTo('projects')">프로젝트</a>
+    <a href="#personal" onclick="event.preventDefault(); goTo('personal')">개인 프로젝트</a>
   </div>
 
   <section class="hero" id="about">
-    <h1 class="hero-name">gubog.dev<span class="cursor">|</span></h1>
-    <p class="hero-desc">UX 디테일과 성능 최적화, 유지보수하기 좋은 코드 작성에 대해 고민하는 프론트엔드 개발자입니다.<br>현장 강의 경험과 다수의 기획·디자인 협업을 통해 비개발 직군과의 원활한 소통에 익숙합니다.</p>
+    <h1 class="hero-name" aria-label="gubog.dev"><span id="heroText" aria-hidden="true"></span><span class="cursor" aria-hidden="true">|</span></h1>
+    <p class="hero-desc">UX 디테일과 성능 최적화, 유지보수하기 좋은 코드 작성에 대해 고민하는 프론트엔드 개발자입니다.<br>현장 강의 경력과 기획·디자인 협업 경험으로 비개발 직군과의 원활한 소통에 익숙합니다.</p>
     <div class="hero-cta">
       <button class="btn-primary" onclick="goTo('experience')">경력 보기</button>
       <button class="btn-secondary" onclick="goTo('projects')">프로젝트 보기</button>
@@ -519,7 +541,7 @@
       <div class="stat-card"><span class="stat-num"><span class="stat-num-slot" data-target="1">—</span></span><span class="stat-label">오픈소스 기여</span></div>
     </div>
 
-    <div class="section-label collapsible" onclick="toggleSection(this)">경험한 것들<span class="collapse-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="section-label collapsible" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">경험한 것들<span class="collapse-icon"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
     <div class="collapsible-body">
     <div>
     <ul class="achievement-list">
@@ -539,7 +561,7 @@
   <div class="divider"></div>
 
   <section class="section" id="skills">
-    <div class="section-label collapsible" onclick="toggleSection(this)">기술 스택<span class="collapse-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="section-label collapsible" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">기술 스택<span class="collapse-icon"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
     <div class="collapsible-body">
     <div>
     <div class="skills-col">
@@ -600,14 +622,14 @@
   <div class="divider"></div>
 
   <section class="section" id="experience">
-    <div class="section-label collapsible" onclick="toggleSection(this)">경력<span class="collapse-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="section-label collapsible" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">경력<span class="collapse-icon"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
     <div class="collapsible-body">
     <div class="exp-content">
     <div class="experience-item">
       <p class="exp-period">2022.02 — 현재</p>
       <p class="exp-company">바나플</p>
       <p class="exp-role">프론트엔드 개발자 · 5년차</p>
-      <p class="exp-desc">F&amp;B 프랜차이즈 바나프레소 서비스 전반(홈페이지·웹뷰·주문·어드민)과 자회사 퀵 서비스 개발·유지보수 담당. 모노레포 설계부터 CI/CD 파이프라인 관리까지 단독 수행. 일 평균 1만 명 이상 접속하는 앱테크 게임 서비스 MVP 단독 런칭·운영.</p>
+      <p class="exp-desc">F&amp;B 프랜차이즈 바나프레소 서비스 전반(홈페이지·웹뷰·주문·어드민)과 자회사 퀵 서비스 개발·유지보수 담당. 모노레포 설계부터 CI/CD 파이프라인 관리까지 단독 수행. 일 평균 1만 명 이상 이용하는 앱테크 게임 서비스 MVP 단독 런칭·운영.</p>
     </div>
     <div class="experience-item">
       <p class="exp-period">2021.04 — 2022.03</p>
@@ -622,7 +644,7 @@
   <div class="divider"></div>
 
   <section class="section" id="projects">
-    <div class="section-label collapsible" onclick="toggleSection(this)">주요 프로젝트<span class="collapse-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="section-label collapsible" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">주요 프로젝트<span class="collapse-icon"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
     <div class="collapsible-body">
     <div>
     <div class="project-group-header">
@@ -664,12 +686,12 @@
     <div class="project-section">
       <p class="project-category-label">서비스 개발</p>
       <div class="project-grid">
-      <a class="project-card" href="https://banapresso.com" target="_blank">
+      <a class="project-card" href="https://banapresso.com" target="_blank" rel="noopener noreferrer">
         <p class="project-card-tag">홈페이지</p>
         <p class="project-card-title">바나프레소 홈페이지</p>
         <p class="project-card-desc"><span class="highlight">React 18</span> 마이그레이션, 이미지 최적화·lazy loading·PurgeCSS·Gzip으로 성능 개선. <span class="highlight">Next.js</span> 도입 시도.</p>
       </a>
-      <a class="project-card" href="https://order.banapresso.com/" target="_blank">
+      <a class="project-card" href="https://order.banapresso.com/" target="_blank" rel="noopener noreferrer">
         <p class="project-card-tag">주문</p>
         <p class="project-card-title">바나프레소 웹 주문</p>
         <p class="project-card-desc">결제·장바구니·할인·회원 인증 로직 전반 개발. 나이스 본인인증 모듈 연동.</p>
@@ -680,9 +702,9 @@
         <p class="project-card-desc">가맹점 매출·정산 관리 페이지 신규 개발부터 유지보수·리뉴얼까지 전 주기 담당. 차트·테이블 기반 데이터 시각화 및 엑셀 다운로드.</p>
       </div>
       <div class="project-card">
-        <p class="project-card-tag">모바일 웹뷰</p>
+        <p class="project-card-tag">웹뷰</p>
         <p class="project-card-title">복숭아키우기</p>
-        <p class="project-card-desc">앱테크 게임 서비스 프론트엔드 단독 개발. <span class="highlight">DAU 1만 명+ (피크 1.3만 명) 1년 이상 유지.</span> 신규 가맹 유치 마케팅 포인트로 활용.</p>
+        <p class="project-card-desc">게임형 앱테크 서비스 프론트엔드 단독 개발. <span class="highlight">DAU 1만 명+ (피크 1.3만 명) 1년 이상 유지.</span> 신규 가맹 유치 마케팅 포인트로 활용.</p>
       </div>
       <div class="project-card">
         <p class="project-card-tag">이벤트</p>
@@ -704,7 +726,7 @@
         <p class="project-card-title">선결제 서비스</p>
         <p class="project-card-desc">개인·단체 선결제 적립·사용내역 조회, 회원정보 관리, 환불 신청 페이지 개발.</p>
       </div>
-      <a class="project-card" href="https://banaple.co.kr/" target="_blank">
+      <a class="project-card" href="https://banaple.co.kr/" target="_blank" rel="noopener noreferrer">
         <p class="project-card-tag">홈페이지</p>
         <p class="project-card-title">바나플 홈페이지 (퀵 서비스)</p>
         <p class="project-card-desc">ASP → React 마이그레이션. 법인 분리 시 외부 ASP 의존 없이 독립 운영 가능한 구조로 전환.</p>
@@ -718,9 +740,9 @@
         <span class="project-group-line"></span>
       </div>
       <div class="open-source-list">
-        <a class="open-source-card" href="https://cahilfoley.github.io/react-snowfall/" target="_blank">
+        <a class="open-source-card" href="https://cahilfoley.github.io/react-snowfall/" target="_blank" rel="noopener noreferrer">
           <div class="os-icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="svg-icon-os"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="svg-icon-os"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           </div>
           <div>
             <p class="os-title">react-snowfall</p>
@@ -735,13 +757,13 @@
   <div class="divider"></div>
 
   <section class="section" id="personal">
-    <div class="section-label collapsible" onclick="toggleSection(this)">개인 프로젝트<span class="collapse-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="section-label collapsible" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">개인 프로젝트<span class="collapse-icon"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
     <div class="collapsible-body">
     <div>
     <p class="personal-desc">GitHub에서 더 많은 작업물을 확인할 수 있습니다.</p>
-    <a class="github-card" href="https://github.com/ashtonisher" target="_blank">
+    <a class="github-card" href="https://github.com/ashtonisher" target="_blank" rel="noopener noreferrer">
       <div class="github-icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="svg-icon-github"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="svg-icon-github"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           </div>
       <p class="github-card-title">ashtonisher</p>
       <p class="github-card-url">github.com/ashtonisher</p>
@@ -758,8 +780,8 @@
       <p class="footer-logo">gubog.dev</p>
       <p>프론트엔드 개발자</p>
     </div>
-    <a class="footer-github" href="https://github.com/ashtonisher" target="_blank" aria-label="GitHub">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    <a class="footer-github" href="https://github.com/ashtonisher" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
     </a>
   </footer>
 
@@ -775,7 +797,8 @@
 
     function applyTheme() {
       root.classList.toggle('light-mode', !dark);
-      // 달/해 아이콘 전환 — CSS hover가 outline/filled 담당
+      themeBtn.setAttribute('aria-pressed', String(!dark));
+      themeBtn.setAttribute('aria-label', dark ? '라이트 모드로 전환' : '다크 모드로 전환');
       const moonIcons = document.querySelectorAll('#iconMoon, #iconMoonFilled');
       const sunIcons = document.querySelectorAll('#iconSun, #iconSunFilled');
       moonIcons.forEach(el => el.classList.toggle('hidden-icon', !dark));
@@ -794,8 +817,10 @@
     });
 
     hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
+      const isOpen = hamburger.classList.toggle('open');
       mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      mobileMenu.setAttribute('aria-hidden', String(!isOpen));
     });
 
     function goTo(id) {
@@ -860,10 +885,18 @@
       showNext();
     }
 
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const statObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          statSlots.forEach(el => animateSlot(el));
+          statSlots.forEach(el => {
+            if (reducedMotion) {
+              el.innerHTML = `<span class="stat-num-inner">${el.dataset.target}</span>`;
+            } else {
+              animateSlot(el);
+            }
+          });
           statObserver.disconnect();
         }
       });
@@ -873,11 +906,25 @@
       const body = label.nextElementSibling;
       label.classList.toggle('collapsed');
       body.classList.toggle('collapsed');
+      const isExpanded = !label.classList.contains('collapsed');
+      label.setAttribute('aria-expanded', String(isExpanded));
     }
 
     statObserver.observe(document.getElementById('statRow'));
 
     applyTheme();
+
+    const heroText = document.getElementById('heroText');
+    const typeTarget = 'gubog.dev';
+    let i = 0;
+    let typeTimer;
+    function typeNext() {
+      if (i < typeTarget.length) {
+        heroText.textContent += typeTarget[i++];
+        typeTimer = setTimeout(typeNext, 70);
+      }
+    }
+    typeTimer = setTimeout(typeNext, 250);
   </script>
 </body>
 </html>
