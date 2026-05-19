@@ -358,7 +358,7 @@
   .highlight { color: var(--text); font-weight: 500; }
 
   /* ACHIEVEMENT LIST */
-  .achievement-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .achievement-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin: 0; padding: 0; }
   .achievement-list li { font-size: 0.875rem; line-height: 1.7; color: var(--text2); padding-left: 1rem; position: relative; }
   .achievement-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
 
@@ -569,18 +569,18 @@
   <div class="divider"></div>
 
 
+  <section class="section">
     <div class="section-label collapsible" role="button" tabindex="0" aria-expanded="true" onclick="toggleSection(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleSection(this)}">경험한 것들<span class="collapse-icon"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
     <div class="collapsible-body">
     <div>
-    <ul class="achievement-list">
-      <li>React · TypeScript 기반 프론트엔드 앱을 설계부터 운영까지 전 주기 단독 수행했습니다.</li>
-      <li>Yarn Berry + Turbo 모노레포를 직접 설계해 멀티 앱 개별 빌드 시간을 <strong>최대 80% 단축</strong>으로 개선했습니다.</li>
-      <li>번들 최적화·이미지 경량화·Gzip 적용으로 번들 사이즈를 대폭 줄이고 LCP/CLS 등 Core Web Vitals를 개선했습니다.</li>
-      <li>React Class 컴포넌트·ASP 등 레거시를 최신 스택으로 마이그레이션하고, React → Next.js SSR 전환을 설계·검증했습니다.</li>
-      <li>앱-웹뷰 브릿지 통신으로 네이티브 메서드 호출·유저 컨텍스트 수신을 구현했습니다.</li>
-      <li>Android · iOS 웹뷰 환경의 렌더링·터치 이벤트·safe-area 등 크로스 플랫폼 이슈를 다수 해결했습니다. (iOS 17 이하 OffscreenCanvas 미지원 → CSS transition 기반 파티클 훅으로 대체)</li>
-      <li>PR 기반 코드 리뷰와 페어 프로그래밍을 팀 개발 프로세스로 운영했습니다.</li>
-    </ul>
+      <ul class="achievement-list">
+        <li>React · TypeScript 기반 프론트엔드 앱을 설계부터 운영까지 전 주기 단독 수행했습니다.</li>
+        <li>Yarn Berry + Turbo 모노레포를 직접 설계해 멀티 앱 개별 빌드 시간을 <strong>최대 80% 단축</strong>으로 개선했습니다.</li>
+        <li>번들 최적화·이미지 경량화·Gzip 적용으로 번들 사이즈를 대폭 줄이고 LCP/CLS 등 Core Web Vitals를 개선했습니다.</li>
+        <li>React Class 컴포넌트·ASP 등 레거시를 최신 스택으로 마이그레이션하고, React → Next.js SSR 전환을 설계·검증했습니다.</li>
+        <li>앱-웹뷰 브릿지 통신으로 네이티브 메서드 호출·유저 컨텍스트 수신을 구현했습니다.</li>
+        <li>Android · iOS 웹뷰 환경의 렌더링·터치 이벤트·safe-area 등 크로스 플랫폼 이슈를 다수 해결했습니다. (iOS 17 이하 OffscreenCanvas 미지원 → CSS transition 기반 파티클 훅으로 대체)</li>
+      </ul>
     </div>
     </div>
   </section>
